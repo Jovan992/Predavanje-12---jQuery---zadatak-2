@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <title></title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row d-flex">
+            <table id="tabela" class="my-4">
+                <thead>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>E-mail</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="imeUnos" class="unos">Milan</td>
+                        <td id="prezimeUformanos" class="unos">Milanovic</td>
+                        <td id="emailUnos" class="unos">mil.mal@yahoo.com</td>
+                        <td><i class="fa-solid fa-xmark deleteRow xField"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="unos">Spaso</td>
+                        <td class="unos">Spasojevic</td>
+                        <td class="unos">spale@gmail.com</td>
+                        <td><i class="fa-solid fa-xmark deleteRow xField"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="unos">Jovana</td>
+                        <td class="unos">Lukic</td>
+                        <td class="unos">jluk95@yahoo.com</td>
+                        <td><i class="fa-solid fa-xmark deleteRow xField"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="bezPaddinga col-6">
+                <button id="noviZaposleni" class="btn btn-secondary p-2 ">Dodaj novog zaposlenog</button>
+            </div>
+            <div class="bezPaddinga col-6 d-flex justify-content-end">
+                <form id="forma" class="mb-2">
+                    <label class="mb-1" for="Ime">Ime</label><br />
+                    <input id="Ime" type="text" /><br />
+                    <label class="mt-2 mb-1" for="Prezime">Prezime</label><br />
+                    <input id="Prezime" type="text" /><br />
+                    <label class="mt-2 mb-1" for="email">E-mail</label><br />
+                    <input id="email" type="text" /><br />
+                    <button type="button" id="zavrsi" class="btn btn-secondary p-2 mt-4"
+                        onclick="zavrsi()">Zavrsi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#zavrsi').click(function () {
+                var tbody = $('#tabela').children('tbody');
+                var ime1 = $("#Ime").val();
+                var prezime1 = $("#Prezime").val();
+                var email1 = $("#email").val();
+                tbody.append('<tr><td id="imeUnos" class="unos">' + ime1 + '</td> <td id="prezimeUnos" class="unos">' + prezime1 + '</td><td id="emailUnos" class="unos">' + email1 + '</td><td><i class="fa-solid fa-xmark deleteRow xField"></i></td></tr>');
+                $("#Ime").val("");
+                $("#Prezime").val("");
+                $("#email").val("");
+                $("#forma").hide();
+            })
+        })
+        
+        $(document).on("click", '.deleteRow', function () {
+            $(this).closest('tr').remove();
+        });
+
+        $(document).on("click", 'td.unos', function () {
+            var promena = prompt("Izmena:");
+            if (promena != null) {
+                $(this).closest('td').text(promena);
+            }
+        });
+                
+        $("#noviZaposleni").click(function () {
+            $("#forma").show();
+        });
+
+    </script>
+</body>
+
+</html>
